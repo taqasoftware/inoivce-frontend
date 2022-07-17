@@ -24,15 +24,22 @@ export const useInvoice = () => {
 
     try {
       await mutateAsync({ ...invoiceData, id });
+   
+   
       setWait("تم التسجيل");
-
-      console.log(`wait : ${wait}`);
+ 
 
       await sleep(3000);
       navigate("/");
     } catch (error) {
       setError(error.message);
-
+     
+      if(error.message === "the last discount did not used"){
+        console.log('hi')
+        setWait('يرجى استخدام الفاتورة الاخيره لتسجيل فاتورة جديدة');
+        await sleep(3000);
+        navigate("/");
+      }
       reset();
     }
 

@@ -3,14 +3,14 @@ import Numpad from "../../components/numpad/Numpad";
 import "./invoice-number.css";
 import { useInvoice } from "./useInvoice";
 import { useParams } from "react-router-dom";
-
+import logo from '../../assets/images/logo.svg'
 export default function InvoiceNumber() {
   const [invoiceNumber, setInvoiceNumber] = useState("");
 
   const { onSubmit, register, handleSubmit, error, errors, wait } =
     useInvoice();
   const { id } = useParams();
-  console.log(error);
+ 
   const getNumPadClick = (num) => {
     setInvoiceNumber(invoiceNumber + num.toString());
   };
@@ -38,7 +38,7 @@ export default function InvoiceNumber() {
       <div className="square2"></div>
       <div className="square3"></div>
 
-      <img className="logo" alt="logo" src="logo.svg" />
+       <img className="logo" alt="logo" src={logo}/>
       <div className="left_content">
         <form
           className="invoice-form"
@@ -60,6 +60,7 @@ export default function InvoiceNumber() {
               <p>يرجى التاكد من رقم الفاتوره</p>
             </small>
           ) : null}
+         
           <input className="invoice-submit_btn" type="submit" value="حفظ" />
         </form>
       </div>
