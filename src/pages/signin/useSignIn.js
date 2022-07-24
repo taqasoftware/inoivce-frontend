@@ -11,10 +11,10 @@ export const useSignIn = () => {
   const [isSignUp, SetIsSignUp] = useState(false);
   const { mutateAsync,error } = useMutation(signInWithNumber);
   const [wait, setWait] = useState(null);
-
-   const navigate = useNavigate();
-
+ 
   const { 
+    getValues,
+    setValue,
     register,
     errors,
     handleSubmit,
@@ -47,9 +47,21 @@ export const useSignIn = () => {
       cardNumber:'',
       invoiceNumber:''
     })
-   }catch{
-     setWait(null)
+   }catch(error){
+     if(error.message !== 'Invoice Not Found')
+    { 
+      setWait(null)
      SetIsSignUp(true);
+    }else{
+      reset({
+        name:'',
+        phoneNumber:'',
+        cardNumber:'',
+        invoiceNumber:''
+      })
+      setWait(null);
+      SetIsSignUp(false);
+    }
  
    }
  
@@ -71,7 +83,9 @@ export const useSignIn = () => {
     error,
     errors,
     isSignUp,
-    wait
+    wait,
+    setValue,
+    getValues
   };
 };
 

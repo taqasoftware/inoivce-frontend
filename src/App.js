@@ -1,8 +1,7 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import SignIn from "./pages/signin/SignIn";
-import InvoiceNumber from "./pages/invoice-number/InvoiceNumber";
+import SignIn from "./pages/signin/SignIn"; 
 
 function App() {
   const client = new QueryClient();
@@ -11,8 +10,7 @@ function App() {
       <BrowserRouter>
         <QueryClientProvider client={client}>
           <Routes>
-            <Route path="/" element={<SignIn />} />
-            <Route path="invoice-number/:id" element={<InvoiceNumber />} />
+            <Route path="/" element={<SignIn />} /> 
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>

@@ -1,39 +1,57 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import KeyboardWrapper from "../../components/keyboard/Keyboard";
 import Numpad from "../../components/numpad/Numpad";
 import "./signin.css";
 import { useSignIn } from "./useSignIn";
 import logo from "../../assets/images/logo.svg";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 export default function SignIn() {
-  const { onSubmit, register, handleSubmit, error, isSignUp ,wait} = useSignIn();
-console.log(wait)
-  const [isNumPad, setIsNumPad] = useState(true);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [invoiceNumber, setinvoiceNumber] = useState("");
-  const [name, SetName] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
+  const {
+    onSubmit,
+    register,
+    handleSubmit,
+    error,
+    isSignUp,
+    wait,
+    setValue,
+    getValues,
+  } = useSignIn();
 
+  const [isNumPad, setIsNumPad] = useState(true);
+  
+  let [current, setCurrent] = useState("");
   const setNumPad = (isActive) => {
     setIsNumPad(isActive);
   };
 
   const backSpace = () => {
-    setinvoiceNumber(invoiceNumber.slice(0, -1));
+    // setinvoiceNumber(invoiceNumber.slice(0, -1));
   };
 
   const getNumPadClick = (num) => {
-    setPhoneNumber(phoneNumber + num.toString());
+    const values = getValues();
+    if (current === "phone") {
+      const phone = values.phoneNumber;
+      setValue("phoneNumber", phone + num.toString());
+    } else if (current === "invoice")
+    {
+      const invoice = values.invoiceNumber;
+      setValue("invoiceNumber", invoice + num.toString());
+    }
+      
+    else if (current === "card"){
+      const card = values.invoiceNumber;
+      setValue("cardNumber", card + num.toString());
+    }
   };
 
   const deleteAllNum = () => {
-    setPhoneNumber("");
+    // setPhoneNumber("");
   };
 
   const backSpaceNum = () => {
-    setPhoneNumber(phoneNumber.slice(0, -1));
+    // setPhoneNumber(phoneNumber.slice(0, -1));
   };
 
   const getKeyBoardClick = (key) => {
@@ -42,15 +60,17 @@ console.log(wait)
     } else if (key === "delete") {
       deleteAllNum();
     } else if (key === "enter") {
-      onSubmit(phoneNumber);
+      // onSubmit(phoneNumber);
     } else {
-      SetName(name + key);
+      const values = getValues();
+      const name = values.name;
+      setValue("name", name + key.toString());
     }
   };
 
   return (
     <div className="signin">
-       {wait ? (
+      {wait ? (
         <div>
           <div className="waiting"></div>
           <div className="waiting__sub">
@@ -67,7 +87,9 @@ console.log(wait)
       <div className="left_content">
         <form
           className="form"
-          onSubmit={handleSubmit((data) => onSubmit(data))}
+          onSubmit={handleSubmit((data) => {
+            onSubmit(data);
+          })}
         >
           <div className="input">
             <label className="label">
@@ -78,9 +100,10 @@ console.log(wait)
               name="phoneNumber"
               id="phoneNumber"
               {...register("phoneNumber")}
-              defaultValue={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              onFocus={() => setNumPad(true)}
+              onFocus={() => {
+                setNumPad(true);
+                setCurrent("phone");
+              }}
             />
           </div>
           <div className="input">
@@ -90,9 +113,10 @@ console.log(wait)
               name="invoiceNumber"
               id="invoiceNumber"
               {...register("invoiceNumber")}
-              defaultValue={invoiceNumber}
-              onChange={(e) => setinvoiceNumber(e.target.value)}
-              onFocus={() => setNumPad(true)}
+              onFocus={() => {
+                setNumPad(true);
+                setCurrent("invoice");
+              }}
             />
           </div>
 
@@ -105,9 +129,10 @@ console.log(wait)
                   name="cardNumber"
                   id="cardNumber"
                   {...register("cardNumber")}
-                  defaultValue={cardNumber}
-                  onChange={(e) => setCardNumber(e.target.value)}
-                  onFocus={() => setNumPad(true)}
+                  onFocus={() => {
+                    setNumPad(true);
+                    setCurrent("card");
+                  }}
                 />
               </div>
               <div className="input">
@@ -117,14 +142,16 @@ console.log(wait)
                   name="name"
                   id="name"
                   {...register("name")}
-                  defaultValue={name}
-                  onChange={(e) => SetName(e.target.value)}
                   onFocus={() => setNumPad(false)}
                 />
               </div>
             </>
           ) : null}
-
+          {error ? (
+            <small>
+              <p>{error.message}</p>
+            </small>
+          ) : null}
           <input className="submit_btn" type="submit" value="سجل" />
         </form>
       </div>
