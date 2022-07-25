@@ -149,7 +149,7 @@ export default function SignIn() {
           ) : null}
           {error ? (
             <small>
-              <p>{error.message}</p>
+              <p className="error">{error.message}</p>
             </small>
           ) : null}
           <input className="submit_btn" type="submit" value="سجل" />

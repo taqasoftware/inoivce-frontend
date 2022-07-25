@@ -163,3 +163,8 @@ small {
 
   box-sizing: content-box;
 }
+
+
+.error{
+  color: red;
+}
