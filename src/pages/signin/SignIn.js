@@ -160,7 +160,7 @@ export default function SignIn() {
           <h1>سجل فاتورتك</h1>
           <h1>وحصل على نقاط خصم</h1>
         </div>
-        {isNumPad ? (
+        {false ? (
           <Numpad
             backSpace={backSpaceNum}
             deleteAll={deleteAllNum}

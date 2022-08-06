@@ -114,11 +114,13 @@ const KeyboardWrapper = ({ getClick }) => {
           <div className="key--letter" data-char="P" onClick={onClick}>
             {language.b11}
           </div>
-          <div className="key--double" data-key="219" data-char="{[">
-            <div>[</div>
+          <div className="key--letter" data-key="219" data-char="{[">
+           
+              {language.b12}
           </div>
-          <div className="key--double" data-key="221" data-char="}]">
-            <div>]</div>
+          <div className="key--letter" data-key="221" data-char="}]">
+          
+            {language.b13}
           </div>
           <div className="key--double" data-key="220" data-char="|\">
             <div>|</div>
@@ -130,39 +132,41 @@ const KeyboardWrapper = ({ getClick }) => {
             <span>caps lock</span>
           </div>
           <div className="key--letter" data-char="A" onClick={onClick}>
-            {language.c2}
+            {language.c1}
           </div>
           <div className="key--letter" data-char="S" onClick={onClick}>
-            {language.c3}
+            {language.c1}
           </div>
           <div className="key--letter" data-char="D" onClick={onClick}>
-            {language.c4}
+            {language.c3}
           </div>
           <div className="key--letter" data-char="F" onClick={onClick}>
-            {language.c5}
+            {language.c4}
           </div>
           <div className="key--letter" data-char="G" onClick={onClick}>
-            {language.c6}
+            {language.c5}
           </div>
           <div className="key--letter" data-char="H" onClick={onClick}>
-            {language.c7}
+            {language.c6}
           </div>
           <div className="key--letter" data-char="J" onClick={onClick}>
-            {language.c8}
+            {language.c7}
           </div>
           <div className="key--letter" data-char="K" onClick={onClick}>
-            {language.c9}
+            {language.c8}
           </div>
           <div className="key--letter" data-char="L" onClick={onClick}>
-            {language.c10}
+            {language.c9}
           </div>
           <div className="key--double" data-key="186">
             <div>:</div>
-            <div>;</div>
+        
+            {language.c10}
           </div>
           <div className="key--double" data-key="222">
             <div>"</div>
-            <div>'</div>
+          
+            {language.c11}
           </div>
           <div className="key--bottom-right key--word key--w5" data-key="13">
             <span>return</span>
@@ -173,37 +177,39 @@ const KeyboardWrapper = ({ getClick }) => {
             <span>shift</span>
           </div>
           <div className="key--letter" data-char="Z" onClick={onClick}>
-            {language.d2}
+            {language.d1}
           </div>
           <div className="key--letter" data-char="X" onClick={onClick}>
-            {language.d3}
+            {language.d2}
           </div>
           <div className="key--letter" data-char="C" onClick={onClick}>
-            {language.d4}
+            {language.d3}
           </div>
           <div className="key--letter" data-char="V" onClick={onClick}>
-            {language.d5}
+            {language.d4}
           </div>
           <div className="key--letter" data-char="B" onClick={onClick}>
-            {language.d6}
+            {language.d5}
           </div>
           <div className="key--letter" data-char="N" onClick={onClick}>
-            {language.d7}
+            {language.d6}
           </div>
           <div className="key--letter" data-char="M" onClick={onClick}>
-            {language.d8}
+            {language.d7}
           </div>
-          <div className="key--double" data-key="188">
-            <div>&lt;</div>
-            <div>,</div>
+          <div className="key--letter" data-key="188">
+          {language.d8}
+       
+      
           </div>
-          <div className="key--double" data-key="190">
-            <div>&gt;</div>
-            <div>.</div>
+          <div className="key--letter" data-key="190">
+          {language.d9}
+          
+       
           </div>
-          <div className="key--double" data-key="191">
-            <div>?</div>
-            <div>/</div>
+          <div className="key--letter" data-key="191">
+          
+            {language.d10}
           </div>
           <div className="key--bottom-right key--word key--w6" data-key="16-R">
             <span>shift</span>
